@@ -3,8 +3,11 @@ version: "3"
 services:
   app:
     build: .
-    command: python app.py
+    image: ${DOCKER_USER_ID}/flask
+  production:
+    image: ${DOCKER_USER_ID}/flask:${BUILD_NUMBER}
     volumes:
       - .:/code
+    command: python app.py
     ports:
       - "80:80"
